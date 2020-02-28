@@ -27,12 +27,13 @@ public class homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        FirebaseDatabase firebaseDatabase=FirebaseDatabase.getInstance();
-        DatabaseReference dbRef=firebaseDatabase.getReference("Products");
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference dbRef = firebaseDatabase.getReference("Products");
 
         dbRef.addValueEventListener(new ValueEventListener() {
 
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 collectiouser((Map<String,Object>)dataSnapshot.getValue());
             }
             @Override
