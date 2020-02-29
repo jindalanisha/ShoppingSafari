@@ -2,9 +2,7 @@ package com.example.shoppingsafari;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class homepage extends AppCompatActivity {
+public class subCategory extends AppCompatActivity {
 
     category_adapter adapter;
     GridView gv;
@@ -29,10 +27,17 @@ public class homepage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homepage);
+        setContentView(R.layout.activity_sub_category);
+
+
+        Bundle b = getIntent().getExtras();
+        if (b == null) {
+            return;
+        }
+        String category = b.getString("category");
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference dbRef = firebaseDatabase.getReference("Products");
+        DatabaseReference dbRef = firebaseDatabase.getReference("Products/"+category);
 
         dbRef.addValueEventListener(new ValueEventListener() {
 
@@ -45,8 +50,6 @@ public class homepage extends AppCompatActivity {
 
             }
         });
-
-
     }
     private void collectiouser(Map<String, Object> value) {
         ArrayList<category_model> all=new ArrayList<>();
@@ -56,42 +59,49 @@ public class homepage extends AppCompatActivity {
             Log.v("hey",u);
             category_model temp=new category_model();
             temp.setTitle(u);
-            if(u.equals("Festive Season"))
-                temp.setImage(R.drawable.festiveseason);
-            else if(u.equals("Food"))
-                temp.setImage(R.drawable.food);
-            else if(u.equals("Home Care"))
-                temp.setImage(R.drawable.homecare);
-            else if(u.equals("Personal Care"))
-                temp.setImage(R.drawable.personalcare);
-            else if(u.equals("Non Food"))
-                temp.setImage(R.drawable.nonfood);
+            if(u.equals("Diwali"))
+                temp.setImage(R.drawable.diwali);
+            else if(u.equals("Holi"))
+                temp.setImage(R.drawable.holi);
+            else if(u.equals("Kitchenware"))
+                temp.setImage(R.drawable.kitchenware);
+            else if(u.equals("Beverages"))
+                temp.setImage(R.drawable.beverages);
+            else if(u.equals("Dairy Products"))
+                temp.setImage(R.drawable.dairyproducts);
+            if(u.equals("Dry Fruits"))
+                temp.setImage(R.drawable.dryfruits);
+            else if(u.equals("Fruits"))
+                temp.setImage(R.drawable.fruits);
+            else if(u.equals("Pulses"))
+                temp.setImage(R.drawable.pulses);
+            else if(u.equals("Vegetables"))
+                temp.setImage(R.drawable.vegetables);
+            else if(u.equals("Accessories"))
+                temp.setImage(R.drawable.accessories);
+            else if(u.equals("Stationary"))
+                temp.setImage(R.drawable.stationary);
+            else if(u.equals("Body Care"))
+                temp.setImage(R.drawable.bodycare);
+            else if(u.equals("Oral Care"))
+                temp.setImage(R.drawable.oralcare);
+
 
 
 
             all.add(temp); // Add Data into List
         }
-        gv= (GridView) findViewById(R.id.gridview);
+        gv= (GridView) findViewById(R.id.gridview1);
         adapter=new category_adapter(this,all);
         gv.setAdapter(adapter);
         gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 category_model temp=(category_model)parent.getItemAtPosition(position);
-                //Toast.makeText(getApplicationContext(),temp.title,Toast.LENGTH_LONG).show();
-                call(temp.title);
+                Toast.makeText(getApplicationContext(),temp.title,Toast.LENGTH_LONG).show();
+                //call(temp.title);
 
             }
         });
     }
-    public void call(String title)
-    {
-        Intent i=new Intent(this,subCategory.class);
-        i.putExtra("category",title);
-        startActivity(i);
-    }
-
-
-
-
 }
