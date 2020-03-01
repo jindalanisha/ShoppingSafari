@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "61692390255-2crujqa0ehepsoghrvc9s4igsueamb8n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shoppingsafari",
+            "certificate_hash": "af4529d4e9ed06b9de305cceccbc0adbe26f622f"
+          }
+        },
+        {
           "client_id": "61692390255-srsp9p8rbdbu3avgtsskrog20bgk5s3d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
