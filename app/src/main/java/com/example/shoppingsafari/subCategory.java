@@ -89,6 +89,7 @@ public class subCategory extends AppCompatActivity {
 
 
 
+
             all.add(temp); // Add Data into List
         }
         gv= (GridView) findViewById(R.id.gridview1);
