@@ -23,42 +23,29 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-   Button b;
+    Button b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        super.onCreate (savedInstanceState);
+        setContentView (R.layout.activity_main);
 
-        b=(Button)findViewById(R.id.Login);
+        b = (Button) findViewById (R.id.Login);
         Button btn = (Button) findViewById (R.id.Logout);
-        b.setOnClickListener (new View.OnClickListener () {
+        b.setOnClickListener (new View.OnClickListener ( ) {
             @Override
             public void onClick(View view) {
-                Intent hintent=new Intent(getApplicationContext (),login.class);
-                startActivity(hintent);
+                Intent hintent = new Intent (getApplicationContext ( ), login.class);
+                startActivity (hintent);
             }
         });
-        btn.setOnClickListener (new View.OnClickListener (){
+        btn.setOnClickListener (new View.OnClickListener ( ) {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this, login.class)); //Go back to home page
-                finish();
+                FirebaseAuth.getInstance ( ).signOut ( );
+                startActivity (new Intent (MainActivity.this, login.class)); //Go back to home page
+                finish ( );
             }
         });
     }
-//    public void gotohomepage(View view)
-//    {
-//        Intent I=new Intent(this,homepage.class);
-//        startActivity(I);
-//    }
-
-
-
 }
-
-
-
-
-
