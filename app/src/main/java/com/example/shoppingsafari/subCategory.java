@@ -3,6 +3,7 @@ package com.example.shoppingsafari;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,7 @@ public class subCategory extends AppCompatActivity {
 
     category_adapter adapter;
     GridView gv;
+    String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +33,7 @@ public class subCategory extends AppCompatActivity {
 
 
         Bundle b = getIntent().getExtras();
-        if (b == null) {
-            return;
-        }
-        String category = b.getString("category");
+        category = b.getString("category");
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference dbRef = firebaseDatabase.getReference("Products/"+category);
@@ -100,9 +99,17 @@ public class subCategory extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 category_model temp=(category_model)parent.getItemAtPosition(position);
                 Toast.makeText(getApplicationContext(),temp.title,Toast.LENGTH_LONG).show();
-                //call(temp.title);
+                call(category,temp.title);
 
             }
         });
+
+    }
+    public void call(String category,String subcategory)
+    {
+        Intent i=new Intent(this,product.class);
+        i.putExtra("category",category);
+        i.putExtra("subcategory",subcategory);
+        startActivity(i);
     }
 }

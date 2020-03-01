@@ -24,11 +24,14 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
 
     Button b;
+    MyDBHandler dbHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_main);
+
+        dbHandler = new MyDBHandler(this, null, null, 1);
 
         b = (Button) findViewById (R.id.Login);
         Button btn = (Button) findViewById (R.id.Logout);
@@ -47,5 +50,11 @@ public class MainActivity extends AppCompatActivity {
                 finish ( );
             }
         });
+    }
+    @Override
+    public void onDestroy()
+    {
+        dbHandler.deleteProduct();
+        super.onDestroy();
     }
 }
