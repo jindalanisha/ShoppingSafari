@@ -36,7 +36,7 @@ public class dijkastra {
             { 5.7, 5.0, 4.5, 4.1, 4.0, 5.0, 4.2, 3.6, 3.2, 3.0, 4.5, 3.6, 2.8, 2.2, 2.0, 4.1, 3.2, 2.2, 1.4, 1.0, 4.0, 3.0, 2.0, 1.0, 0.0}
     };
 
-    static final int V = 9;
+
     public ArrayList<Integer> dijkstra(List<Integer> shelftogo, int src) {
 
         ArrayList<Integer>result=new ArrayList<>();
@@ -62,10 +62,10 @@ public class dijkastra {
             shelftogo.remove(srcnode);
             V--;
         }
-        System.out.println("p");
+
         for(int j=0;j<arrlist.size();j++){
             result.add(arrlist.get(j));
-            System.out.print(arrlist.get(j)+" ---> ");
+            //System.out.print(arrlist.get(j)+" ---> ");
         }
 
         return result;
