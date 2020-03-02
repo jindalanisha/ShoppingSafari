@@ -105,7 +105,7 @@ public class product extends AppCompatActivity {
     public void taketour(View view)
     {
         Intent intent = new Intent(getApplicationContext(), tour.class);
-        ArrayList<String>data1=new ArrayList<>();
+        ArrayList<String>data1= new ArrayList<>();
         data1=dbHandler.findshelves();
 
         List<Integer>temp=new ArrayList<>();
